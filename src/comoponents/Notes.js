@@ -1,21 +1,25 @@
-import React from "react";
-import { useContext } from "react";
 import NoteContext from "../context/NoteContext";
+import { useContext } from "react";
+import AddNote from "./AddNote";
 import Noteitem from "./Noteitem";
+
 const Notes = () => {
   const divStyle = {
     marginLeft: "20%",
   };
   const context = useContext(NoteContext);
-  const { notes, setNotes } = context;
+  const { notes, addNote } = context;
   return (
-    <div className="Note" style={divStyle}>
-      <div className="row my-3">
-        {notes.map((notes) => {
-          return <Noteitem key={notes._id} notes={notes} />;
-        })}
+    <>
+      <AddNote />
+      <div className="Note" style={divStyle}>
+        <div className="row my-3">
+          {notes.map((note) => {
+            return <Noteitem key={note._id} notes={note} />;
+          })}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
