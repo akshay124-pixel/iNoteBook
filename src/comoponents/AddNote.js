@@ -1,20 +1,31 @@
-import React from "react";
-import { useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 import NoteContext from "../context/NoteContext";
 
 const AddNote = () => {
   const context = useContext(NoteContext);
   const { addNote } = context;
 
-  const [note, setNote] = useState({ title: "", description: "", tag: "" });
+  const [note, setNote] = useState({
+    title: "",
+    description: "",
+    tag: "default",
+  });
+
   const handleclick = (e) => {
     e.preventDefault();
-    addNote(...note);
+    addNote(note.title, note.description, note.tag);
+    // Optionally, you can clear the input fields after adding the note
+    setNote({
+      title: "",
+      description: "",
+      tag: "default",
+    });
   };
 
   const onchange = (e) => {
     setNote({ ...note, [e.target.name]: e.target.value });
   };
+
   const divStyle = {
     marginRight: "28%",
     marginLeft: "21%",
@@ -23,20 +34,21 @@ const AddNote = () => {
 
   return (
     <div>
-      <div className="conatiner" style={divStyle}>
+      <div className="container" style={divStyle}>
         <h1>Add Note</h1>
         <form className="my-3">
           <div className="mb-3">
-            <label htmlFor="exampleInputEmail1" className="form-label">
+            <label htmlFor="title" className="form-label">
               Title
             </label>
             <input
-              type="title"
+              type="text"
               className="form-control"
               id="title"
               name="title"
               aria-describedby="emailHelp"
               onChange={onchange}
+              value={note.title}
             />
             <div id="emailHelp" className="form-text"></div>
           </div>
@@ -49,6 +61,8 @@ const AddNote = () => {
               className="form-control"
               id="description"
               name="description"
+              onChange={onchange}
+              value={note.description}
             />
           </div>
           <div className="mb-3 form-check">
@@ -56,7 +70,6 @@ const AddNote = () => {
               type="checkbox"
               className="form-check-input"
               id="exampleCheck1"
-              onChange={onchange}
             />
             <label className="form-check-label" htmlFor="exampleCheck1">
               Check me out

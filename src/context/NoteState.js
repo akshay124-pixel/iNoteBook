@@ -4,8 +4,8 @@ import NoteContext from "./NoteContext";
 const NoteState = (props) => {
   const noteinitial = [
     {
-      _id: "64fecc1175093831ef545bba1",
-      user: "64fc3de56db3063648dd2165",
+      _id: "64fecc11750973831ef545bba1",
+      user: "64fc3de56db763063648dd2165",
       title: "Title",
       description: "Write Here......",
       tag: "personal",
@@ -13,8 +13,8 @@ const NoteState = (props) => {
       __v: 0,
     },
     {
-      _id: "64fecc117568509331ef545bba1",
-      user: "64fc3de56db3063648dd2165",
+      _id: "64fecc1175685093831ef545bba1",
+      user: "64fc3de56db308763648dd2165",
       title: "Title",
       description: "Write Here......",
       tag: "personal",
@@ -29,11 +29,11 @@ const NoteState = (props) => {
   const addNote = (title, description, tag) => {
     console.log("Adding a New Note");
     const note = {
-      _id: "64fecc117509368631e8f545bba1",
-      user: "64fc3de56db3063648dd2165",
-      title: "Title ADDED",
-      description: "Write Here......[ADDED]",
-      tag: "personal",
+      _id: "64fecc11750973831ef545bba1",
+      user: "64fc3de56db30638648dd2165",
+      title,
+      description,
+      tag,
       date: "2023-09-11T08:13:05.992Z",
       __v: 0,
     };

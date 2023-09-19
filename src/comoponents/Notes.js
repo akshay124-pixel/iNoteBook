@@ -15,7 +15,7 @@ const Notes = () => {
       <div className="Note" style={divStyle}>
         <div className="row my-3">
           {notes.map((note) => {
-            return <Noteitem key={note._id} notes={note} />;
+            return <Noteitem key={note._id} note={note} />;
           })}
         </div>
       </div>
