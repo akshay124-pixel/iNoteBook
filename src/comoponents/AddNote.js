@@ -5,85 +5,77 @@ const AddNote = () => {
   const context = useContext(NoteContext);
   const { addNote } = context;
 
-  const [note, setNote] = useState({
-    title: "",
-    description: "",
-    tag: "default",
-  });
+  const [note, setNote] = useState({ title: "", description: "", tag: "" });
 
-  const handleclick = (e) => {
+  const handleClick = (e) => {
     e.preventDefault();
     addNote(note.title, note.description, note.tag);
-    // Optionally, you can clear the input fields after adding the note
-    setNote({
-      title: "",
-      description: "",
-      tag: "default",
-    });
+    setNote({ title: "", description: "", tag: "" });
   };
 
-  const onchange = (e) => {
+  const onChange = (e) => {
     setNote({ ...note, [e.target.name]: e.target.value });
   };
-
-  const divStyle = {
-    marginRight: "28%",
-    marginLeft: "21%",
-    marginTop: "4%",
-  };
-
   return (
-    <div>
-      <div className="container" style={divStyle}>
-        <h1>Add Note</h1>
-        <form className="my-3">
-          <div className="mb-3">
-            <label htmlFor="title" className="form-label">
-              Title
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              id="title"
-              name="title"
-              aria-describedby="emailHelp"
-              onChange={onchange}
-              value={note.title}
-            />
-            <div id="emailHelp" className="form-text"></div>
-          </div>
-          <div className="mb-3">
-            <label htmlFor="description" className="form-label">
-              Description
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              id="description"
-              name="description"
-              onChange={onchange}
-              value={note.description}
-            />
-          </div>
-          <div className="mb-3 form-check">
-            <input
-              type="checkbox"
-              className="form-check-input"
-              id="exampleCheck1"
-            />
-            <label className="form-check-label" htmlFor="exampleCheck1">
-              Check me out
-            </label>
-          </div>
-          <button
-            type="submit"
-            className="btn btn-primary"
-            onClick={handleclick}
-          >
-            Submit
-          </button>
-        </form>
-      </div>
+    <div className="container my-3">
+      <h2>Add a Note</h2>
+      <form className="my-3">
+        <div className="mb-3">
+          <label htmlFor="title" className="form-label">
+            Title
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="title"
+            name="title"
+            aria-describedby="emailHelp"
+            value={note.title}
+            onChange={onChange}
+            minLength={5}
+            required
+          />
+        </div>
+        <div className="mb-3">
+          <label htmlFor="description" className="form-label">
+            Description
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="description"
+            name="description"
+            value={note.description}
+            onChange={onChange}
+            minLength={5}
+            required
+          />
+        </div>
+        <div className="mb-3">
+          <label htmlFor="tag" className="form-label">
+            Tag
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="tag"
+            name="tag"
+            value={note.tag}
+            onChange={onChange}
+            minLength={5}
+            required
+          />
+        </div>
+
+        <button
+          click={note.title.length < 5 || note.description.length < 5}
+          type="submit"
+          className="btn btn-primary"
+          onClick={handleClick}
+        >
+          Add Note
+        </button>
+      </form>
     </div>
   );
 };
