@@ -18,10 +18,6 @@ const Notes = () => {
     edescription: "",
     etag: "",
   });
-  const myStyles = {
-    paddingLeft: "8%",
-    marginTop: "2%",
-  };
 
   const updateNote = (currentNote) => {
     ref.current.click();
@@ -51,7 +47,9 @@ const Notes = () => {
         className="btn btn-primary d-none"
         data-bs-toggle="modal"
         data-bs-target="#exampleModal"
-      ></button>
+      >
+        Launch demo modal
+      </button>
       <div
         className="modal fade"
         id="exampleModal"
@@ -144,8 +142,8 @@ const Notes = () => {
         </div>
       </div>
 
-      <div className="row my-3" style={myStyles}>
-        <h2>Notes</h2>
+      <div className="row my-3" style={{ marginLeft: "7%" }}>
+        <h2>You Notes</h2>
         <div className="container mx-2">
           {notes.length === 0 && "No notes to display"}
         </div>

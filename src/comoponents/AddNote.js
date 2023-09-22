@@ -17,7 +17,7 @@ const AddNote = () => {
     setNote({ ...note, [e.target.name]: e.target.value });
   };
   return (
-    <div className="container my-3">
+    <div className="container my-5">
       <h2>Add a Note</h2>
       <form className="my-3">
         <div className="mb-3">
@@ -68,7 +68,7 @@ const AddNote = () => {
         </div>
 
         <button
-          click={note.title.length < 5 || note.description.length < 5}
+          disabled={note.title.length < 5 || note.description.length < 5}
           type="submit"
           className="btn btn-primary"
           onClick={handleClick}
