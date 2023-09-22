@@ -11,7 +11,7 @@ const Navbar = () => {
           data-bs-theme="dark"
         >
           <div className="container-fluid">
-            <Link className="navbar-brand" href="/">
+            <Link className="navbar-brand" to="/">
               iNoteBook
             </Link>
             <buttons
