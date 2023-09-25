@@ -1,6 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 
-const Signup = () => {
+const Signup = (props) => {
+  const [credentials, setCredentials] = useState({
+    name: "",
+    email: "",
+    password: "",
+    confirmpassword: "",
+  });
+  let history = useHistory();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const { name, email, password } = credentials;
+    const response = await fetch("http://localhost:5000/api/auth/createuser", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name,
+        email,
+        password,
+      }),
+    });
+    const json = await response.json();
+    console.log(json);
+    if (json.success) {
+      // Save the auth token and redirect
+      localStorage.setItem("token", json.authtoken);
+      history.push("/");
+      props.showAlert("Account Created Successfully", "Success");
+    } else {
+      props.showAlert("Invalid credentials", "Danger");
+    }
+  };
+
+  const onChange = (e) => {
+    setCredentials({ ...credentials, [e.target.name]: e.target.value });
+  };
+
   const DivStyle = {
     marginLeft: "20%",
     marginRight: "20%",
@@ -11,12 +50,13 @@ const Signup = () => {
       <div className="mb-3">
         <h1>SignUp</h1>
       </div>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label htmlFor="name" className="form-label">
             Name
           </label>
           <input
+            onChange={onChange}
             type="text"
             className="form-control"
             id="name"
@@ -29,6 +69,7 @@ const Signup = () => {
             Email address
           </label>
           <input
+            onChange={onChange}
             type="email"
             className="form-control"
             id="email"
@@ -44,6 +85,9 @@ const Signup = () => {
             Password
           </label>
           <input
+            onChange={onChange}
+            minLength={5}
+            required
             type="password"
             name="password"
             className="form-control"
@@ -60,8 +104,11 @@ const Signup = () => {
             Confirm Password
           </label>
           <input
+            onChange={onChange}
+            minLength={5}
+            required
             type="password"
-            name="Repeatyourpassword"
+            name="confirmpassword"
             className="form-control"
             id="confirmpassword"
           />

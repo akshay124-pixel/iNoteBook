@@ -6,30 +6,37 @@ import About from "./comoponents/About";
 import NoteState from "./context/NoteState";
 import Login from "./comoponents/Login";
 import Signup from "./comoponents/Signup";
-import AlertDismiss from "./comoponents/AlertDismiss";
-
+import Alert from "./comoponents/Alert";
+import { useState } from "react";
 function App() {
+  const [Alert, setAlert] = useState(null);
+  const showAlert = (message, type) => {
+    setAlert({
+      msg: message,
+      type: type,
+    });
+    setTimeout(() => {
+      setAlert(null);
+    }, 1500);
+  };
   return (
     <>
       <NoteState>
         <Router>
           <Navbar />
+          <Alert message="Welcome to iNoteBook" />
           <Switch>
             <Route exact path="/">
-              <AlertDismiss message="Welcome to iNoteBook" />
-              <Home />
+              <Home showAlert={showAlert} />
             </Route>
             <Route exact path="/about">
-              <AlertDismiss message=" About Open Succesfully... " />
               <About />
             </Route>
             <Route exact path="/login">
-              <AlertDismiss message="Login Open Successfully " />
-              <Login />
+              <Login showAlert={showAlert} />
             </Route>
             <Route exact path="/signup">
-              <AlertDismiss message="SignUp Open Successfully " />
-              <Signup />
+              <Signup showAlert={showAlert} />
             </Route>
           </Switch>
         </Router>
