@@ -1,18 +1,23 @@
 import React from "react";
 import "bootstrap/dist/js/bootstrap.min.js";
+
 function Alert(props) {
-  // const capitalize = (word) => {
-  //   const lower = word.tolowerCase();
-  //   return lower.charAt(0).toUpperCase() + lower.slice(1);
-  // };
+  // Fix the capitalize function and handle "danger" case
+  const capitalize = (word) => {
+    if (word === "danger") {
+      return "Error";
+    }
+    return word.charAt(0).toUpperCase() + word.slice(1);
+  };
+
   return (
-    props.alert && (
+    // Use optional chaining to check if props.alert exists
+    props.alert?.type && (
       <div
         className={`alert alert-${props.alert.type} alert-dismissible fade show`}
         role="alert"
       >
-        <strong>{props.alert.type}</strong>
-        {props.alert.msg}
+        <strong>{capitalize(props.alert.type)}</strong> {props.alert.msg}
         <button
           type="button"
           className="btn-close"
@@ -23,4 +28,5 @@ function Alert(props) {
     )
   );
 }
+
 export default Alert;

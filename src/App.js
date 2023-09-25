@@ -9,7 +9,7 @@ import Signup from "./comoponents/Signup";
 import Alert from "./comoponents/Alert";
 import { useState } from "react";
 function App() {
-  const [Alert, setAlert] = useState(null);
+  const [alert, setAlert] = useState(null);
   const showAlert = (message, type) => {
     setAlert({
       msg: message,
@@ -24,7 +24,8 @@ function App() {
       <NoteState>
         <Router>
           <Navbar />
-          <Alert message="Welcome to iNoteBook" />
+          <Alert alert={alert} />
+
           <Switch>
             <Route exact path="/">
               <Home showAlert={showAlert} />
