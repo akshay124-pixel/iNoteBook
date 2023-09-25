@@ -34,7 +34,7 @@ const Login = (props) => {
   const containerStyle = {
     marginLeft: "20%",
     marginRight: "20%",
-    marginTop: "10%",
+    marginTop: "7%",
   };
   return (
     <>
@@ -75,7 +75,7 @@ const Login = (props) => {
           </div>
 
           <button type="submit" className="btn btn-primary">
-            Submit
+            LogIn
           </button>
         </form>
       </div>
