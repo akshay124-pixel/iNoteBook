@@ -76,8 +76,12 @@ const Navbar = () => {
                   </Link>
                 </form>
               ) : (
-                <button onClick={handleLogout} className="btn btn-primary">
-                  Logout
+                <button
+                  onClick={handleLogout}
+                  type="button"
+                  className="btn btn-outline-info"
+                >
+                  LogOut
                 </button>
               )}
             </div>

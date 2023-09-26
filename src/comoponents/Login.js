@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-
+import backgroundImage from "./img.jpg";
 const Login = (props) => {
   const [credentials, setCredentials] = useState({ email: "", password: "" });
   let history = useHistory();
@@ -32,20 +32,38 @@ const Login = (props) => {
   const onChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
+
   const containerStyle = {
-    marginLeft: "20%",
-    marginRight: "20%",
+    marginLeft: "auto",
+    marginRight: "auto",
     marginTop: "7%",
+    maxWidth: "400px",
   };
+
+  const Divimg = {
+    backgroundImage: `url(${backgroundImage})`,
+    backgroundSize: "cover",
+    paddingTop: "5%",
+    paddingBottom: "15%",
+  };
+
+  const h1Style = {
+    color: "white",
+    textAlign: "center",
+  };
+  const labelStyle = {
+    color: "white",
+  };
+
   return (
-    <>
-      <div style={containerStyle}>
+    <div className="Background" style={Divimg}>
+      <div className="login" style={containerStyle}>
         <div className="mb-3">
-          <h1>Login</h1>
+          <h1 style={h1Style}>Login</h1>
         </div>
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
-            <label htmlFor="email" className="form-label">
+            <label htmlFor="email" style={labelStyle} className="form-label">
               Email address
             </label>
             <input
@@ -57,12 +75,12 @@ const Login = (props) => {
               name="email"
               aria-describedby="emailHelp"
             />
-            <div id="emailHelp" className="form-text">
+            <div id="emailHelp" style={labelStyle} className="form-text">
               We'll never share your email with anyone else.
             </div>
           </div>
           <div className="mb-3">
-            <label htmlFor="password" className="form-label">
+            <label htmlFor="password" className="form-label" style={labelStyle}>
               Password
             </label>
             <input
@@ -75,12 +93,12 @@ const Login = (props) => {
             />
           </div>
 
-          <button type="submit" className="btn btn-primary">
+          <button type="submit" className="btn btn-dark">
             LogIn
           </button>
         </form>
       </div>
-    </>
+    </div>
   );
 };
 

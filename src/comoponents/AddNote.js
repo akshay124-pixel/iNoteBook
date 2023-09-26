@@ -70,8 +70,8 @@ const AddNote = (props) => {
 
         <button
           disabled={note.title.length < 5 || note.description.length < 5}
+          className="btn btn-secondary"
           type="submit"
-          className="btn btn-primary"
           onClick={handleClick}
         >
           Add Note
