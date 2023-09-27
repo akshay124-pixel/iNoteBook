@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import NoteContext from "../context/NoteContext";
-
+import "./MyButton.css";
 const AddNote = (props) => {
   const context = useContext(NoteContext);
   const { addNote } = context;
@@ -17,6 +17,7 @@ const AddNote = (props) => {
   const onChange = (e) => {
     setNote({ ...note, [e.target.name]: e.target.value });
   };
+
   return (
     <div className="container my-5">
       <h2>Add a Note</h2>
@@ -70,7 +71,7 @@ const AddNote = (props) => {
 
         <button
           disabled={note.title.length < 5 || note.description.length < 5}
-          className="btn btn-secondary"
+          className="bn5"
           type="submit"
           onClick={handleClick}
         >
